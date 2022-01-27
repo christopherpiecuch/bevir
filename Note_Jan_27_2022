@@ -1,0 +1,7 @@
+Note/Update on Thu Jan 27 2022
+After playing around with the model, I realize that—as it's coded—it places too strong of a prior constraint on the intercept variable, beta. 
+Specifically, on line 61, it specifies a prior variance of (1 m)^2. This value is too small, and pulls the posterior solution towards zero,
+which explains why the Bayesian trend in the explainer text is more muted than the OLS trend.
+A more realistic value for sigma2 on line 61 would be 10 rather than 1.
+If you set sigma2=10, then you get a trend of 0.9+/-0.5 mm/yr. 
+This is more similar to the Donnelly et al. (2004) estimate of 1.0+/-0.2, but with wider, more realistic uncertainties.
